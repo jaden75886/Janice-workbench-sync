@@ -67,6 +67,13 @@ test('sync API protects data and rejects stale revisions', async t => {
   const firstBody = await first.json();
   assert.equal(firstBody.revision, 1);
 
+  const invalidPayload = await fetch(base + '/api/data', {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({ device: 'bad-device', ts: Date.now() + 1, base_revision: 1, payload: { wb_demo: 'not-json' } })
+  });
+  assert.equal(invalidPayload.status, 400);
+
   const stale = await fetch(base + '/api/data', {
     method: 'POST',
     headers,
