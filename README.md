@@ -17,7 +17,7 @@
 - `PORT`：监听端口，默认 `8787`。
 - `DATA_DIR`：数据目录，默认 `./data`。目录中会生成 `data.json` 和上一版备份 `data.json.bak`。
 - `SYNC_TOKEN`：必须设置的长随机 Token；未设置时数据接口返回 `503`。
-- `CORS_ORIGINS`：允许的前端来源，多个来源用逗号分隔。生产环境请填写工作台的实际 HTTPS 地址，不要使用 `*`。
+- `CORS_ORIGINS`：允许的前端来源，多个来源用逗号分隔。生产环境请填写工作台的实际 HTTPS 地址，不要使用 `*`；使用 `file://` 本地预览时可临时填写 `null`。
 - `MAX_BODY_BYTES`：请求体上限，默认 5 MiB。
 
 ## 部署建议
