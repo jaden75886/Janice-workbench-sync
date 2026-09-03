@@ -5,7 +5,13 @@ services:
     plan: free
     buildCommand: "npm install"
     startCommand: "node server.js"
-    healthCheckPath: /api/data
+    healthCheckPath: /healthz
     envVars:
       - key: PORT
         value: "10000"
+      - key: DATA_DIR
+        value: "/var/data"
+      - key: SYNC_TOKEN
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
