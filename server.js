@@ -27,6 +27,7 @@ function normalizeStore(value) {
   const payload = value.payload && typeof value.payload === 'object' && !Array.isArray(value.payload)
     ? value.payload
     : {};
+  validatePayload(payload);
   return {
     version: 1,
     revision: Number.isInteger(value.revision) && value.revision >= 0 ? value.revision : 0,
@@ -81,6 +82,7 @@ function validatePayload(payload) {
   for (const [key, value] of Object.entries(payload)) {
     if (!key.startsWith('wb_')) throw new Error('payload contains an invalid key');
     if (typeof value !== 'string') throw new Error('payload values must be JSON strings');
+    try { JSON.parse(value); } catch (error) { throw new Error('payload values must be valid JSON strings'); }
   }
   if (Buffer.byteLength(JSON.stringify(payload), 'utf8') > MAX_BODY_BYTES) {
     throw new Error('payload is too large');
