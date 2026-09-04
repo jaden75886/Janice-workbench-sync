@@ -1,10 +1,11 @@
 {
   "name": "janice-workbench-sync",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "Zero-dependency sync server for Janice's personal workbench",
+  "description": "Authenticated sync server for Janice's personal workbench",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node --test"
   },
   "engines": {
     "node": ">=18"
